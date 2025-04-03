@@ -1,2 +1,2 @@
 # Cp-2
-Group praject
+Group project
