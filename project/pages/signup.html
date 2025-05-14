@@ -1,0 +1,280 @@
+<!--
+  Signup Page
+  - Allows users to create a new HealthMantra account
+  - Includes form validation and social signup options
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta and Title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - HealthMantra</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <!-- Font Awesome and Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section: Navigation and Logo -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <!-- Logo and Home Link -->
+                <a href="../index.html">
+                    <h1><i class="fas fa-leaf"></i> HealthMantra</h1>
+                </a>
+            </div>
+            <nav>
+                <!-- Main Navigation Links -->
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="supplements.html">Supplements</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <!-- Login and Signup Buttons -->
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary active">Sign Up</a>
+            </div>
+            <div class="menu-toggle">
+                <!-- Mobile Menu Icon -->
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Signup Form Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Create Your Account</h2>
+                <p>Join HealthMantra to get personalized nutrition plans and access premium supplements.</p>
+            </div>
+            
+            <!-- Signup Form -->
+            <form action="../php/signup.php" method="POST" class="auth-form">
+                <!-- Profile Image Upload -->
+                <div class="profile-upload">
+                    <i class="fas fa-user"></i>
+                    <input type="file" id="profile-image" accept="image/*">
+                    <img class="preview" src="" alt="">
+                    <div class="upload-label">Upload Photo</div>
+                </div>
+                
+                <!-- Name Fields (First and Last Name) -->
+                <div class="name-fields">
+                    <div class="form-group">
+                        <label for="first-name" class="form-label">First Name</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="first-name" name="first_name" class="form-control" placeholder="First name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="last-name" class="form-label">Last Name</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="last-name" name="last_name" class="form-control" placeholder="Last name" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                
+                <!-- Password Fields -->
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Create a password" required>
+                        <button type="button" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password" class="form-label">Confirm Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirm-password" name="confirm_password" class="form-control" placeholder="Confirm your password" required>
+                        <button type="button" class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Terms and Conditions Checkbox -->
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" name="terms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                
+                <!-- Social Signup Divider -->
+                <div class="auth-divider">
+                    <span>Or sign up with</span>
+                </div>
+                
+                <!-- Social Signup Buttons -->
+                <div class="social-auth">
+                    <button type="button" class="btn-social btn-google">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button type="button" class="btn-social btn-facebook">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </button>
+                </div>
+                
+                <!-- Link to Login Page -->
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="login.html">Log in</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <h2><i class="fas fa-leaf"></i> HealthMantra</h2>
+                    </div>
+                    <p>Your trusted partner for health and nutrition. We provide personalized plans and premium supplements to help you achieve your wellness goals.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="supplements.html">Supplements</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Sign Up</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="supplements.html?category=vitamins">Vitamins</a></li>
+                        <li><a href="supplements.html?category=minerals">Minerals</a></li>
+                        <li><a href="supplements.html?category=proteins">Proteins</a></li>
+                        <li><a href="supplements.html?category=omega">Omega Oils</a></li>
+                        <li><a href="supplements.html?category=herbs">Herbal Supplements</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Health Street, Wellness City, WC 12345</li>
+                        <li><i class="fas fa-phone-alt"></i> (123) 456-7890</li>
+                        <li><i class="fas fa-envelope"></i> info@healthmantra.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthMantra. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Modal Popup -->
+    <div id="customModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <p id="modalMessage"></p>
+      </div>
+    </div>
+
+    <style>
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 9999; 
+      left: 0; top: 0; width: 100%; height: 100%;
+      overflow: auto; background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content {
+      background-color: #fff; margin: 15% auto; padding: 20px;
+      border: 1px solid #888; width: 300px; border-radius: 8px;
+      text-align: center;
+    }
+    .close-btn {
+      color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;
+    }
+    .close-btn:hover { color: #000; }
+    </style>
+
+    <script>
+    function showModal(message) {
+      document.getElementById('modalMessage').innerText = message;
+      document.getElementById('customModal').style.display = 'block';
+    }
+    function closeModal() {
+      document.getElementById('customModal').style.display = 'none';
+    }
+    window.onclick = function(event) {
+      var modal = document.getElementById('customModal');
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Example client-side validation for the signup form
+    document.querySelector('.auth-form').addEventListener('submit', function(e) {
+      var firstName = document.getElementById('first-name').value.trim();
+      var lastName = document.getElementById('last-name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirm-password').value;
+      var terms = document.querySelector('input[name="terms"]').checked;
+
+      if (!firstName || !lastName || !email || !password || !confirmPassword || !terms) {
+        e.preventDefault();
+        showModal("Please fill in all required fields before proceeding.");
+        return false;
+      }
+      if (password !== confirmPassword) {
+        e.preventDefault();
+        showModal("Passwords do not match.");
+        return false;
+      }
+      // You can add more validation as needed
+    });
+    </script>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>

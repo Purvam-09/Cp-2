@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Plan - HealthMantra</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <h1><i class="fas fa-leaf"></i> HealthMantra</h1>
+                </div>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="" alt="User Profile" id="user-avatar">
+                </div>
+                <div class="user-info">
+                    <h3 id="user-name"></h3>
+                    <p id="user-plan"></p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="diet_plan.html">
+                            <i class="fas fa-utensils"></i>
+                            <span>Diet Plan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="progress.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Progress</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="supplements.html">
+                            <i class="fas fa-pills"></i>
+                            <span>Supplements</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="appointments.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Appointments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="messages.html">
+                            <i class="fas fa-comment-alt"></i>
+                            <span>Messages</span>
+                            <span class="badge" id="unread-messages">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../php/logout.php" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="content-header">
+                <h1>Your Diet Plan</h1>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search meals...">
+                    </div>
+                    <div class="notifications">
+                        <button class="notifications-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">0</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <div class="diet-plan-overview">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-value" id="daily-calories">0</h3>
+                                <p class="stat-label">Daily Calories</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-drumstick-bite"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-value" id="daily-protein">0g</h3>
+                                <p class="stat-label">Protein</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-bread-slice"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-value" id="daily-carbs">0g</h3>
+                                <p class="stat-label">Carbs</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-cheese"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-value" id="daily-fats">0g</h3>
+                                <p class="stat-label">Fats</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="meal-plan-container">
+                        <div class="meal-plan-header">
+                            <h2>Weekly Meal Plan</h2>
+                            <div class="meal-plan-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-download"></i> Download Plan
+                                </button>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-print"></i> Print Plan
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-plan-grid" id="meal-plan-grid">
+                            <!-- Meal plan content will be loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Fetch user data and update profile
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../php/get_user_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('user-name').textContent = data.first_name + ' ' + data.last_name;
+                    document.getElementById('user-plan').textContent = data.plan_type + ' Plan';
+                    if (data.profile_image) {
+                        document.getElementById('user-avatar').src = data.profile_image;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+
+            // Fetch diet plan data
+            fetch('../php/get_diet_plan.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('daily-calories').textContent = data.target_calories;
+                    document.getElementById('daily-protein').textContent = data.protein_grams + 'g';
+                    document.getElementById('daily-carbs').textContent = data.carb_grams + 'g';
+                    document.getElementById('daily-fats').textContent = data.fat_grams + 'g';
+                    
+                    // Load meal plan
+                    loadMealPlan(data.meal_plan);
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        function loadMealPlan(mealPlan) {
+            const grid = document.getElementById('meal-plan-grid');
+            // Implementation for rendering meal plan
+        }
+    </script>
+</body>
+</html>

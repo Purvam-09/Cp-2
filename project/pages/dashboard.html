@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - HealthMantra</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <a href="../index.html">
+                        <h1><i class="fas fa-leaf"></i> HealthMantra</h1>
+                    </a>
+                </div>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="User Profile">
+                </div>
+                <div class="user-info">
+                    <h3>Sarah Johnson</h3>
+                    <p>Premium Member</p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="diet_plan.html">
+                            <i class="fas fa-apple-alt"></i>
+                            <span>Diet Plan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="progress.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Progress</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="supplements.html">
+                            <i class="fas fa-pills"></i>
+                            <span>Supplements</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="appointments.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Appointments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="messages.html">
+                            <i class="fas fa-comment-alt"></i>
+                            <span>Messages</span>
+                            <span class="badge">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../php/logout.php" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="content">
+            <header class="content-header">
+                <div class="header-left">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="notifications">
+                        <button class="notifications-btn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">5</span>
+                        </button>
+                        <div class="notifications-dropdown">
+                            <div class="notification-item unread">
+                                <div class="notification-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p>Reminder: Nutritionist appointment tomorrow at 10:00 AM.</p>
+                                    <span class="notification-time">2 hours ago</span>
+                                </div>
+                                <button class="notification-read-btn">
+                                    <i class="fas fa-circle"></i>
+                                </button>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p>Congratulations! You've reached 80% of your weight goal.</p>
+                                    <span class="notification-time">Yesterday</span>
+                                </div>
+                                <button class="notification-read-btn">
+                                    <i class="far fa-circle"></i>
+                                </button>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notification-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="notification-content">
+                                    <p>Your updated diet plan is now available for review.</p>
+                                    <span class="notification-time">2 days ago</span>
+                                </div>
+                                <button class="notification-read-btn">
+                                    <i class="fas fa-circle"></i>
+                                </button>
+                            </div>
+                            <a href="#" class="all-notifications">View All Notifications</a>
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="User Profile">
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="content-body">
+                <div class="welcome-banner">
+                    <div class="welcome-message">
+                        <h2>Welcome back, Sarah!</h2>
+                        <p>Your premium plan is active until <strong>November 15, 2025</strong>. Here's a summary of your progress this week.</p>
+                    </div>
+                    <div class="welcome-actions">
+                        <a href="appointments.html" class="btn btn-outline">Schedule Appointment</a>
+                        <a href="diet_plan.html" class="btn btn-primary">View Diet Plan</a>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-weight"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-value">154 lbs</h3>
+                            <p class="stat-label">Current Weight</p>
+                            <span class="stat-trend positive">
+                                <i class="fas fa-arrow-down"></i> 2.4 lbs this month
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-value">1,890</h3>
+                            <p class="stat-label">Calories Burned</p>
+                            <span class="stat-trend positive">
+                                <i class="fas fa-arrow-up"></i> 12% vs last week
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-value">1,620</h3>
+                            <p class="stat-label">Calories Consumed</p>
+                            <span class="stat-trend negative">
+                                <i class="fas fa-arrow-up"></i> 5% vs target
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-value">2.1 L</h3>
+                            <p class="stat-label">Water Intake</p>
+                            <span class="stat-trend negative">
+                                <i class="fas fa-arrow-down"></i> 0.4 L below target
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="card progress-chart-card">
+                        <div class="card-header">
+                            <h3>Weight Progress</h3>
+                            <div class="card-actions">
+                                <button class="btn-text">
+                                    <i class="fas fa-calendar-alt"></i> Last 30 Days
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="weightChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card nutrition-card">
+                        <div class="card-header">
+                            <h3>Today's Nutrition</h3>
+                            <div class="card-actions">
+                                <button class="btn-text">See Meal Plan</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="nutrition-charts">
+                                <div class="chart-container">
+                                    <canvas id="macrosChart"></canvas>
+                                    <div class="chart-label">Macronutrients</div>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="caloriesChart"></canvas>
+                                    <div class="chart-label">Daily Calories</div>
+                                </div>
+                            </div>
+                            <div class="nutrition-summary">
+                                <div class="nutrition-item">
+                                    <span class="nutrition-label">Protein</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 85%; background-color: #4CAF50;"></div>
+                                    </div>
+                                    <span class="nutrition-value">85g / 100g</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="nutrition-label">Carbs</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 70%; background-color: #2196F3;"></div>
+                                    </div>
+                                    <span class="nutrition-value">140g / 200g</span>
+                                </div>
+                                <div class="nutrition-item">
+                                    <span class="nutrition-label">Fats</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 60%; background-color: #FF9800;"></div>
+                                    </div>
+                                    <span class="nutrition-value">36g / 60g</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card appointments-card">
+                        <div class="card-header">
+                            <h3>Upcoming Appointments</h3>
+                            <div class="card-actions">
+                                <button class="btn-text">View All</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="appointment-item">
+                                <div class="appointment-date">
+                                    <div class="date-box">
+                                        <span class="month">Oct</span>
+                                        <span class="day">18</span>
+                                    </div>
+                                </div>
+                                <div class="appointment-details">
+                                    <h4>Diet Plan Review</h4>
+                                    <p>With Dr. Jessica Miller</p>
+                                    <div class="appointment-time">
+                                        <i class="far fa-clock"></i> 10:00 AM - 10:30 AM
+                                    </div>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="btn btn-outline btn-sm">Reschedule</button>
+                                </div>
+                            </div>
+                            
+                            <div class="appointment-item">
+                                <div class="appointment-date">
+                                    <div class="date-box">
+                                        <span class="month">Oct</span>
+                                        <span class="day">25</span>
+                                    </div>
+                                </div>
+                                <div class="appointment-details">
+                                    <h4>Progress Check-in</h4>
+                                    <p>With Dr. Jessica Miller</p>
+                                    <div class="appointment-time">
+                                        <i class="far fa-clock"></i> 11:00 AM - 11:30 AM
+                                    </div>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="btn btn-outline btn-sm">Reschedule</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card supplements-card">
+                        <div class="card-header">
+                            <h3>Recommended Supplements</h3>
+                            <div class="card-actions">
+                                <button class="btn-text">View All</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="supplements-grid">
+                                <div class="supplement-item">
+                                    <div class="supplement-image">
+                                        <img src="https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Vitamin D3 + K2">
+                                    </div>
+                                    <div class="supplement-info">
+                                        <h4>Vitamin D3 + K2</h4>
+                                        <div class="supplement-dosage">
+                                            <i class="fas fa-capsules"></i> 1 capsule daily
+                                        </div>
+                                        <div class="supplement-time">
+                                            <i class="far fa-clock"></i> With breakfast
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="supplement-item">
+                                    <div class="supplement-image">
+                                        <img src="https://images.pexels.com/photos/4397840/pexels-photo-4397840.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Omega-3 Fish Oil">
+                                    </div>
+                                    <div class="supplement-info">
+                                        <h4>Omega-3 Fish Oil</h4>
+                                        <div class="supplement-dosage">
+                                            <i class="fas fa-capsules"></i> 2 capsules daily
+                                        </div>
+                                        <div class="supplement-time">
+                                            <i class="far fa-clock"></i> With dinner
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="supplement-item">
+                                    <div class="supplement-image">
+                                        <img src="https://images.pexels.com/photos/8343689/pexels-photo-8343689.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Magnesium Complex">
+                                    </div>
+                                    <div class="supplement-info">
+                                        <h4>Magnesium Complex</h4>
+                                        <div class="supplement-dosage">
+                                            <i class="fas fa-capsules"></i> 1 capsule daily
+                                        </div>
+                                        <div class="supplement-time">
+                                            <i class="far fa-clock"></i> Before bedtime
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline btn-block">Order Supplements</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

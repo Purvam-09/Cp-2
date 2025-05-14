@@ -1,0 +1,480 @@
+/* Health Profile Specific Styles */
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 120px var(--space-md) var(--space-xxl);
+    background-color: var(--background-alt);
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--background);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.profile-header {
+    padding: var(--space-xl);
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.profile-header h2 {
+    margin-bottom: var(--space-xs);
+    font-size: 1.75rem;
+    color: var(--dark-text);
+}
+
+.profile-header p {
+    font-size: 0.95rem;
+    color: var(--medium-text);
+    margin-bottom: var(--space-lg);
+}
+
+/* Progress Bar and Steps */
+.progress-bar {
+    height: 6px;
+    background-color: var(--background-alt);
+    border-radius: 3px;
+    margin-bottom: var(--space-md);
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 var(--space-md);
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--background-alt);
+    color: var(--medium-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: var(--space-xs);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.step-label {
+    font-size: 0.8rem;
+    color: var(--medium-text);
+    transition: color 0.3s ease;
+}
+
+.step.active .step-number,
+.step.completed .step-number {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+}
+
+.step.active .step-label,
+.step.completed .step-label {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* Form Steps */
+.form-step {
+    display: none;
+    padding: var(--space-xl);
+}
+
+.form-step.active {
+    display: block;
+}
+
+.form-step h3 {
+    margin-bottom: var(--space-lg);
+    font-size: 1.5rem;
+    color: var(--dark-text);
+}
+
+/* Form Layout Elements */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+.input-with-unit {
+    display: flex;
+    align-items: center;
+}
+
+.input-with-unit .form-control {
+    flex: 1;
+    border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
+}
+
+.unit-select {
+    width: 70px;
+    padding: var(--space-md);
+    border: 1px solid var(--border-color);
+    border-left: none;
+    background-color: var(--background-alt);
+    border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+    color: var(--dark-text);
+    font-family: var(--body-font);
+}
+
+/* Radio Button Styling */
+.radio-group {
+    display: flex;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-md);
+}
+
+.radio-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--dark-text);
+}
+
+.radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.radio-mark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid var(--border-color);
+}
+
+.radio-container:hover input ~ .radio-mark {
+    border-color: var(--primary-color);
+}
+
+.radio-container input:checked ~ .radio-mark {
+    border-color: var(--primary-color);
+}
+
+.radio-mark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--primary-color);
+}
+
+.radio-container input:checked ~ .radio-mark:after {
+    display: block;
+}
+
+/* Checkbox Grid */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+}
+
+/* Activity and Goal Selectors */
+.activity-selector,
+.goal-selector {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+.activity-option,
+.goal-option {
+    cursor: pointer;
+}
+
+.activity-option input,
+.goal-option input {
+    position: absolute;
+    opacity: 0;
+}
+
+.activity-card,
+.goal-card {
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-md);
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.activity-option input:checked ~ .activity-card,
+.goal-option input:checked ~ .goal-card {
+    border-color: var(--primary-color);
+    background-color: rgba(76, 175, 80, 0.05);
+}
+
+.activity-icon,
+.goal-icon {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+}
+
+.activity-info h4,
+.goal-info h4 {
+    margin-bottom: 2px;
+    font-size: 1.1rem;
+}
+
+.activity-info p,
+.goal-info p {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    color: var(--medium-text);
+}
+
+/* Textarea Styling */
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Form Navigation */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-xl);
+}
+
+/* Completion Message */
+.completion-message {
+    text-align: center;
+    padding: var(--space-md) 0;
+}
+
+.completion-icon {
+    font-size: 4rem;
+    color: var(--success-color);
+    margin-bottom: var(--space-md);
+}
+
+.completion-message h3 {
+    margin-bottom: var(--space-sm);
+}
+
+.completion-message p {
+    margin-bottom: var(--space-xl);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Plan Selection */
+.plan-options {
+    margin-top: var(--space-xxl);
+    margin-bottom: var(--space-xl);
+}
+
+.plan-options h4 {
+    font-size: 1.3rem;
+    margin-bottom: var(--space-xs);
+}
+
+.plan-options > p {
+    margin-bottom: var(--space-xl);
+}
+
+.plan-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+
+.plan-option {
+    cursor: pointer;
+}
+
+.plan-option input {
+    position: absolute;
+    opacity: 0;
+}
+
+.plan-card {
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.plan-option input:checked ~ .plan-card {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+}
+
+.plan-badge {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    font-size: 0.7rem;
+    padding: 3px var(--space-sm);
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+}
+
+.plan-card.recommended {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.plan-header {
+    padding: var(--space-lg);
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.plan-header h5 {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-sm);
+}
+
+.plan-price {
+    margin-top: var(--space-sm);
+}
+
+.plan-price .price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-text);
+}
+
+.plan-price .period {
+    font-size: 0.9rem;
+    color: var(--medium-text);
+}
+
+.plan-features {
+    padding: var(--space-md) var(--space-lg);
+}
+
+.plan-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan-features li {
+    padding: var(--space-xs) 0;
+    font-size: 0.9rem;
+}
+
+.plan-features li i {
+    width: 18px;
+    margin-right: var(--space-xs);
+}
+
+.plan-features li i.fa-check {
+    color: var(--success-color);
+}
+
+.plan-features li i.fa-times {
+    color: var(--medium-text);
+}
+
+.terms-agreement {
+    margin-top: var(--space-xl);
+}
+
+.terms-agreement a {
+    color: var(--primary-color);
+}
+
+.terms-agreement a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .plan-selector {
+        grid-template-columns: 1fr;
+    }
+    
+    .plan-card.recommended {
+        transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-card {
+        border-radius: 0;
+        box-shadow: none;
+    }
+    
+    .profile-container {
+        padding: 80px 0 0;
+        background-color: var(--background);
+    }
+    
+    .form-row,
+    .activity-selector,
+    .goal-selector {
+        grid-template-columns: 1fr;
+    }
+    
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .progress-steps {
+        margin: 0;
+    }
+    
+    .step-label {
+        display: none;
+    }
+}

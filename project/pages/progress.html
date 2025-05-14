@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracking - HealthMantra</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <h1><i class="fas fa-leaf"></i> HealthMantra</h1>
+                </div>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="" alt="User Profile" id="user-avatar">
+                </div>
+                <div class="user-info">
+                    <h3 id="user-name"></h3>
+                    <p id="user-plan"></p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="diet_plan.html">
+                            <i class="fas fa-utensils"></i>
+                            <span>Diet Plan</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="progress.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Progress</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="supplements.html">
+                            <i class="fas fa-pills"></i>
+                            <span>Supplements</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="appointments.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Appointments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="messages.html">
+                            <i class="fas fa-comment-alt"></i>
+                            <span>Messages</span>
+                            <span class="badge" id="unread-messages">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../php/logout.php" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="content-header">
+                <h1>Progress Tracking</h1>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="add-progress">
+                        <i class="fas fa-plus"></i> Add New Entry
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <div class="progress-overview">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-weight"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-value" id="current-weight">0 kg</h3>
+                                <p class="stat-label">Current Weight</p>
+                                <span class="stat-trend" id="weight-trend"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-value" id="body-fat">0%</h3>
+                                <p class="stat-label">Body Fat</p>
+                                <span class="stat-trend" id="fat-trend"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-ruler"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-value" id="measurements">View</h3>
+                                <p class="stat-label">Measurements</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-value" id="goal-progress">0%</h3>
+                                <p class="stat-label">Goal Progress</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="progress-charts">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Weight Progress</h3>
+                                <div class="card-actions">
+                                    <select id="weight-timeframe" class="form-control">
+                                        <option value="week">Last Week</option>
+                                        <option value="month">Last Month</option>
+                                        <option value="3months">Last 3 Months</option>
+                                        <option value="year">Last Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="weightChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Body Measurements</h3>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="measurementsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="progress-history">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Progress History</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline btn-sm">Export Data</button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="progress-table" id="progress-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Weight</th>
+                                            <th>Body Fat</th>
+                                            <th>Chest</th>
+                                            <th>Waist</th>
+                                            <th>Hips</th>
+                                            <th>Notes</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Progress history will be loaded dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Progress Modal -->
+    <div class="modal" id="progress-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Progress Entry</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="progress-form">
+                    <div class="form-group">
+                        <label for="entry-date">Date</label>
+                        <input type="date" id="entry-date" name="date" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" name="weight" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="body-fat">Body Fat (%)</label>
+                            <input type="number" id="body-fat-input" name="body_fat" step="0.1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="chest">Chest (cm)</label>
+                            <input type="number" id="chest" name="chest" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="waist">Waist (cm)</label>
+                            <input type="number" id="waist" name="waist" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="hips">Hips (cm)</label>
+                            <input type="number" id="hips" name="hips" step="0.1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="notes"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Progress</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        // Fetch user data and update profile
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../php/get_user_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('user-name').textContent = data.first_name + ' ' + data.last_name;
+                    document.getElementById('user-plan').textContent = data.plan_type + ' Plan';
+                    if (data.profile_image) {
+                        document.getElementById('user-avatar').src = data.profile_image;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+
+            // Load progress data
+            loadProgressData();
+            
+            // Initialize charts
+            initializeCharts();
+        });
+
+        function loadProgressData() {
+            fetch('../php/get_progress_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    updateProgressStats(data);
+                    updateProgressTable(data);
+                    updateCharts(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function initializeCharts() {
+            // Implementation for initializing charts
+        }
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('progress-modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('progress-modal').style.display = 'none';
+        }
+
+        // Form submission
+        document.getElementById('progress-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            fetch('../php/save_progress.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    closeModal();
+                    loadProgressData();
+                } else {
+                    alert('Error saving progress: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        // Add progress button
+        document.getElementById('add-progress').addEventListener('click', openModal);
+    </script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments - HealthMantra</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Sidebar content -->
+            <div class="sidebar-header">
+                <div class="logo">
+                    <h1><i class="fas fa-leaf"></i> HealthMantra</h1>
+                </div>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="" alt="User Profile" id="user-avatar">
+                </div>
+                <div class="user-info">
+                    <h3 id="user-name"></h3>
+                    <p id="user-plan"></p>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="diet_plan.html">
+                            <i class="fas fa-utensils"></i>
+                            <span>Diet Plan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="progress.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Progress</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="supplements.html">
+                            <i class="fas fa-pills"></i>
+                            <span>Supplements</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="appointments.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Appointments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="messages.html">
+                            <i class="fas fa-comment-alt"></i>
+                            <span>Messages</span>
+                            <span class="badge" id="unread-messages">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../php/logout.php" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="content-header">
+                <h1>Appointments</h1>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="schedule-appointment">
+                        <i class="fas fa-plus"></i> Schedule Appointment
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <div class="appointments-overview">
+                    <!-- Upcoming Appointments -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Upcoming Appointments</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="upcoming-appointments">
+                                <!-- Appointments will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Past Appointments -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Past Appointments</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="past-appointments">
+                                <!-- Past appointments will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Schedule Appointment Modal -->
+    <div class="modal" id="appointment-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Schedule Appointment</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="appointment-form">
+                    <div class="form-group">
+                        <label for="appointment-date">Date</label>
+                        <input type="date" id="appointment-date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment-time">Time</label>
+                        <select id="appointment-time" name="time" required>
+                            <!-- Time slots will be loaded here -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment-type">Type</label>
+                        <select id="appointment-type" name="type" required>
+                            <option value="consultation">Consultation</option>
+                            <option value="follow-up">Follow-up</option>
+                            <option value="diet-plan-review">Diet Plan Review</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment-notes">Notes</label>
+                        <textarea id="appointment-notes" name="notes"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Schedule</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Load user data
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../php/get_user_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('user-name').textContent = data.first_name + ' ' + data.last_name;
+                    document.getElementById('user-plan').textContent = data.plan_type + ' Plan';
+                    if (data.profile_image) {
+                        document.getElementById('user-avatar').src = data.profile_image;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+
+            // Load appointments
+            loadAppointments();
+        });
+
+        // Load appointments
+        function loadAppointments() {
+            fetch('../php/get_appointments.php')
+                .then(response => response.json())
+                .then(data => {
+                    displayAppointments(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Display appointments
+        function displayAppointments(appointments) {
+            const upcomingContainer = document.getElementById('upcoming-appointments');
+            const pastContainer = document.getElementById('past-appointments');
+            
+            // Clear containers
+            upcomingContainer.innerHTML = '';
+            pastContainer.innerHTML = '';
+
+            const now = new Date();
+
+            appointments.forEach(appointment => {
+                const appointmentDate = new Date(appointment.appointment_date);
+                const container = appointmentDate > now ? upcomingContainer : pastContainer;
+
+                const appointmentElement = createAppointmentElement(appointment);
+                container.appendChild(appointmentElement);
+            });
+        }
+
+        // Create appointment element
+        function createAppointmentElement(appointment) {
+            const div = document.createElement('div');
+            div.className = 'appointment-item';
+            // Add appointment content
+            return div;
+        }
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('appointment-modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('appointment-modal').style.display = 'none';
+        }
+
+        // Schedule appointment button
+        document.getElementById('schedule-appointment').addEventListener('click', openModal);
+
+        // Form submission
+        document.getElementById('appointment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            fetch('../php/schedule_appointment.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    closeModal();
+                    loadAppointments();
+                } else {
+                    alert('Error scheduling appointment: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
